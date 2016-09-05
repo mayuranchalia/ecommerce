@@ -1,15 +1,14 @@
 component hint="This is persistance implementation to persist/retrieve order information from database" output="true"{
 	
 	function createOrder(customerId,orderStatus,orderProducts,paymentId) access="public" returntype="ecommerce.model.order"     {
-		orderDate = now();
-		queryexecute("insert into order_table (order_customer_id, order_status, order_products, order_payment_gatewayid, order_date) values(?,?,?,?,?)",
-		[customerId,orderStatus,orderProducts,paymentId,orderDate],{result="result"});	
+		orderProductsString = serializeJSON(orderProducts);
+		queryexecute("insert into order_table (order_customer_id, order_status, order_products, order_payment_gatewayid) values(?,?,?,?)",
+		[customerId,orderStatus,orderProductsString,paymentId],{result="result"});	
 		
 		order = createObject("component", "ecommerce.model.order");
 		order.customerId = customerId;
 		order.orderStatus = orderStatus;
 		order.orderProducts = orderProducts;
-		order.orderDate = orderDate;
 		order.paymentId = paymentId;
 		order.orderId = result.generatedkey;
 		
@@ -26,7 +25,6 @@ component hint="This is persistance implementation to persist/retrieve order inf
 			order = createObject("component", "ecommerce.model.order");
 			order.customerId = queryResultObj.order_customer_id;
 			order.orderId = queryResultObj.order_id;
-			order.orderDate = queryResultObj.order_date;
 			order.orderStatus = queryResultObj.order_status;
 			order.orderProducts = queryResultObj.order_products;
 			order.paymentId = queryResultObj.order_payment_gatewayid;
@@ -39,7 +37,7 @@ component hint="This is persistance implementation to persist/retrieve order inf
 		qparams = {customerId={value=customerIdArg , cfsqltype ='cf_sql_integer'}, orderId={value=orderIdArg , cfsqltype ='cf_sql_integer'}, 
 				paymentId={value=paymentIdArg , cfsqltype ='cf_sql_integer'}, orderStatus={value=orderStatusArg,cfsqltype ='cf_sql_varchar'}, 
 				 orderProducts={value=orderProductsArg,cfsqltype ='cf_sql_longvarchar'}};
-		queryexecute("update  order_table set order_payment_gatewayid=:paymentId, order_status=:orderStatus, order_products=:orderProducts where brand_id=:brandId",qparams);
+		queryexecute("update  order_table set order_payment_gatewayid=:paymentId, order_status=:orderStatus, order_products=:orderProducts where order_id=:orderId AND order_customer_id=:customerId",qparams);
 		return true;	
 	}
 	

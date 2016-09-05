@@ -65,7 +65,7 @@
 	//discountCode = promotionPersistance.getDiscountCode(2);
 	//writeOutput(discountCode);
 </cfscript>--->
-
+<!---
 <cfscript>
 	merchantPersistance = createObject("component", "ecommerce.persistance.merchantpersistance" );
 	//response = merchantPersistance.addProduct(1,1,600,10);
@@ -74,4 +74,20 @@
 	//writeOutput(response);
 	response = merchantPersistance.updateProductQuantity(1,1,15);
 	writeOutput(response);
+</cfscript>--->
+
+<cfscript>
+	orderPersistance = createObject("component", "ecommerce.persistance.orderpersistance");
+	products = arraynew(1);
+	productStruct = structnew();
+	productStruct.product_id = 1;
+	productStruct.product_merchant_id = 1;
+	productStruct.quantity = 5 ;
+	arrayAppend(products,productStruct);
+	writeOutput(serializeJSON(products));
+	order = orderPersistance.createOrder(1,"cart",products,"1");
+	writeOutput(serializeJSON(order));
+	
+/*	order = orderPersistance.deleteOrder(1,1);
+	writeOutput(serializeJSON(order));*/
 </cfscript>
