@@ -82,12 +82,14 @@
 	productStruct = structnew();
 	productStruct.product_id = 1;
 	productStruct.product_merchant_id = 1;
-	productStruct.quantity = 5 ;
+	productStruct.quantity = 6 ;
 	arrayAppend(products,productStruct);
 	writeOutput(serializeJSON(products));
-	order = orderPersistance.createOrder(1,"cart",products,"1");
-	writeOutput(serializeJSON(order));
+	//order = orderPersistance.createOrder(1,"cart",products,"1");
+	//writeOutput(serializeJSON(order));
 	
-/*	order = orderPersistance.deleteOrder(1,1);
-	writeOutput(serializeJSON(order));*/
+	//order = orderPersistance.getOrders(1);
+	//writeOutput(serializeJSON(order));
+	order = orderPersistance.updateOrder(1,1,1,"checked_out",products);
+	writeOutput(serializeJSON(order));
 </cfscript>

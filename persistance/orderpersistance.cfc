@@ -33,10 +33,11 @@ component hint="This is persistance implementation to persist/retrieve order inf
 		return orderList;
 	}
 	
-	function updateOrder(customerIdArg,orderIdArg,paymentIdArg,orderStatusArg,orderProductsArg) access="public" returntype="ecommerce.model.order"   {
+	function updateOrder(customerIdArg,orderIdArg,paymentIdArg,orderStatusArg,orderProductsArg) access="public" returntype="boolean"     {
+		orderProductsString = serializeJSON(orderProductsArg);
 		qparams = {customerId={value=customerIdArg , cfsqltype ='cf_sql_integer'}, orderId={value=orderIdArg , cfsqltype ='cf_sql_integer'}, 
 				paymentId={value=paymentIdArg , cfsqltype ='cf_sql_integer'}, orderStatus={value=orderStatusArg,cfsqltype ='cf_sql_varchar'}, 
-				 orderProducts={value=orderProductsArg,cfsqltype ='cf_sql_longvarchar'}};
+				 orderProducts={value=orderProductsString,cfsqltype ='cf_sql_longvarchar'}};
 		queryexecute("update  order_table set order_payment_gatewayid=:paymentId, order_status=:orderStatus, order_products=:orderProducts where order_id=:orderId AND order_customer_id=:customerId",qparams);
 		return true;	
 	}
