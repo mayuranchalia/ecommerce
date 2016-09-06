@@ -16,7 +16,7 @@ component hint="This is persistance implementation to persist/retrieve order inf
 	
 	function getOrders(customerIdArg) access="public" returntype="ecommerce.model.order[]"     {
 		
-		qparams = {customerId={value=customerIdArg , cfsqltype ='cf_sql_integer'}};
+		qparams = {customerId={value=customerIdArg , cfsqltype ='cf_sql_varchar'}};
 		queryResultObj = queryexecute("select * from order_table where order_customer_id=:customerId",qparams);
 		var orderList = arraynew(1);
 		cfloop(query="queryResultObj")
@@ -34,7 +34,7 @@ component hint="This is persistance implementation to persist/retrieve order inf
 	
 	function updateOrder(customerIdArg,orderIdArg,paymentIdArg,orderStatusArg,orderProductsArg) access="public" returntype="boolean"     {
 		//orderProductsString = serializeJSON(orderProductsArg);
-		qparams = {customerId={value=customerIdArg , cfsqltype ='cf_sql_integer'}, orderId={value=orderIdArg , cfsqltype ='cf_sql_integer'}, 
+		qparams = {customerId={value=customerIdArg , cfsqltype ='cf_sql_varchar'}, orderId={value=orderIdArg , cfsqltype ='cf_sql_integer'}, 
 				paymentId={value=paymentIdArg , cfsqltype ='cf_sql_integer'}, orderStatus={value=orderStatusArg,cfsqltype ='cf_sql_varchar'}, 
 				 orderProducts={value=orderProductsArg,cfsqltype ='cf_sql_longvarchar'}};
 		queryexecute("update  order_table set order_payment_gatewayid=:paymentId, order_status=:orderStatus, order_products=:orderProducts where order_id=:orderId AND order_customer_id=:customerId",qparams);
@@ -42,7 +42,7 @@ component hint="This is persistance implementation to persist/retrieve order inf
 	}
 	
 	function deleteOrder(orderIdArg,customerIdArg) access="public" returntype="boolean" {
-		qparams = {orderId={value=orderIdArg , cfsqltype ='cf_sql_integer'},customerId={value=customerIdArg , cfsqltype ='cf_sql_integer'}};
+		qparams = {orderId={value=orderIdArg , cfsqltype ='cf_sql_integer'},customerId={value=customerIdArg , cfsqltype ='cf_sql_varchar'}};
 		queryexecute("delete from order_table  where order_id=:orderId AND order_customer_id=:customerId",qparams);	
 		return true;
 	}    

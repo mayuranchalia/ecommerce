@@ -78,7 +78,7 @@
 
 <cfscript>
 	orderPersistance = createObject("component", "ecommerce.persistance.orderpersistance");
-	products = arraynew(1);
+	/*products = arraynew(1);
 	productStruct = structnew();
 	productStruct.product_id = 2;
 	productStruct.product_merchant_id = 1;
@@ -87,11 +87,14 @@
 	//writeOutput(serializeJSON(products));
 	productString = serializeJSON(products);
 	order = orderPersistance.createOrder(1,"cart",productString,"1");
-	writeOutput(serializeJSON(order));
+	writeOutput(serializeJSON(order));*/
 	
-	//order = orderPersistance.getOrders(1);
-	//writeOutput(serializeJSON(order));
+	order = orderPersistance.getOrders("FA290252-A1F3-8697-CDC9EDB372E746ED");
+	writeOutput(serializeJSON(order));
 /*	productString = serializeJSON(products);
 	order = orderPersistance.updateOrder(1,1,1,"cart",productString);
 	writeOutput(serializeJSON(order));*/
 </cfscript>
+<!---<cfoutput >
+	#createuUID()#
+</cfoutput>--->

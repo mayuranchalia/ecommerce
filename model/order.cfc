@@ -1,6 +1,6 @@
 component displayname="Order" hint="This is a order model"{
 	property name="orderId" type="numeric" displayname="orderId" hint="Unique identifier for a order";
-	property name="customerId" type="numeric" displayname="customerId" hint="Customer who created the order";
+	property name="customerId" type="string"   displayname="customerId" hint="Customer who created the order";
 	property name="orderDate" type="date" displayname="orderDate" hint="Date when the order is placed";
 	property name="orderAmount" type="numeric" displayname="orderAmount" hint="Total value of order";
 	property name="orderStatus" type="string" displayname="orderSatus" hint="Satus of order";
