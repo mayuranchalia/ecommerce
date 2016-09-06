@@ -1,14 +1,13 @@
 component hint="This is persistance implementation to persist/retrieve order information from database" output="true"{
 	
 	function createOrder(customerId,orderStatus,orderProducts,paymentId) access="public" returntype="ecommerce.model.order"     {
-		orderProductsString = serializeJSON(orderProducts);
 		queryexecute("insert into order_table (order_customer_id, order_status, order_products, order_payment_gatewayid) values(?,?,?,?)",
-		[customerId,orderStatus,orderProductsString,paymentId],{result="result"});	
-		
+		[customerId,orderStatus,orderProducts,paymentId],{result="result"});	
+		orderProductStruct = deserializeJSON(orderProducts);
 		order = createObject("component", "ecommerce.model.order");
 		order.customerId = customerId;
 		order.orderStatus = orderStatus;
-		order.orderProducts = orderProducts;
+		order.orderProducts = orderProductStruct;
 		order.paymentId = paymentId;
 		order.orderId = result.generatedkey;
 		
@@ -34,10 +33,10 @@ component hint="This is persistance implementation to persist/retrieve order inf
 	}
 	
 	function updateOrder(customerIdArg,orderIdArg,paymentIdArg,orderStatusArg,orderProductsArg) access="public" returntype="boolean"     {
-		orderProductsString = serializeJSON(orderProductsArg);
+		//orderProductsString = serializeJSON(orderProductsArg);
 		qparams = {customerId={value=customerIdArg , cfsqltype ='cf_sql_integer'}, orderId={value=orderIdArg , cfsqltype ='cf_sql_integer'}, 
 				paymentId={value=paymentIdArg , cfsqltype ='cf_sql_integer'}, orderStatus={value=orderStatusArg,cfsqltype ='cf_sql_varchar'}, 
-				 orderProducts={value=orderProductsString,cfsqltype ='cf_sql_longvarchar'}};
+				 orderProducts={value=orderProductsArg,cfsqltype ='cf_sql_longvarchar'}};
 		queryexecute("update  order_table set order_payment_gatewayid=:paymentId, order_status=:orderStatus, order_products=:orderProducts where order_id=:orderId AND order_customer_id=:customerId",qparams);
 		return true;	
 	}
