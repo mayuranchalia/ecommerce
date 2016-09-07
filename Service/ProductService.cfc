@@ -32,7 +32,7 @@
 	</cffunction>
 	<!--- update product is pending --->
 	
-	<cffunction name="addBrand" access="remote" httpmethod="POST" produces="application/json" restpath="brand" returntype="ecommerce.model.brand" >
+	<cffunction name="addBrand" access="remote" httpmethod="POST" produces="application/json" consumes="application/x-www-form-urlencoded" restpath="brand" returntype="ecommerce.model.brand" >
 		<cfargument name="brandName" restargsource="Form" restargname="brandName" type="string" >
 		<cfargument name="brandDescription" restargsource="Form" restargname="brandDescription" type="string" >
 		<cfscript>
@@ -42,12 +42,30 @@
 		<cfreturn brand>
 	</cffunction>
 
-	<cffunction name="getBrands" access="remote" httpmethod="GET" restpath="brand" returntype="ecommerce.model.brand[]" >
+	<cffunction name="getBrands" access="remote" httpmethod="GET" restpath="brand" returntype="ecommerce.model.brand[]" produces="application/json" >
 		<cfscript>
 			brandPersistance = createObject("component", "ecommerce.persistance.brandpersistance" );
 			brands = brandPersistance.getBrands();
 		</cfscript>
 		<cfreturn brands>
 	</cffunction>	
+	
+	<cffunction name="getCategories" access="remote" httpmethod="GET" restpath="category" returntype="ecommerce.model.category[]" produces="application/json" >
+		<cfscript>
+			categoryPersistance = createObject("component", "ecommerce.persistance.categorypersistance" );
+			categories = categoryPersistance.getCategories();
+		</cfscript>
+		<cfreturn categories>
+	</cffunction>
+	
+	<cffunction name="addCategory" access="remote" httpmethod="POST" restpath="category" returntype="ecommerce.model.category" produces="application/json" consumes="application/x-www-form-urlencoded">
+		<cfargument name="categoryName" restargname="categoryName"  type="string" restargsource="Form" >
+		<cfargument name="categoryDescription" restargname="categoryDescription"  type="string" restargsource="Form" >
+		<cfscript>
+			categoryPersistance = createObject("component", "ecommerce.persistance.categorypersistance" );
+			category = categoryPersistance.saveCategory(categoryName,categoryDescription);
+		</cfscript>
+		<cfreturn category>
+	</cffunction>
 	
 </cfcomponent>

@@ -9,12 +9,11 @@ component  hint="This is persistance implementation to persist/retrieve category
 			category = createObject("component", "ecommerce.model.category" );
 			category.category_name = categoryName;
 			category.category_description = categoryDescription;
-			category.category_id = result.generatedkey;
-			
+			category.category_id = result.generatedkey;			
 			return category;
 	}		
 	
-		function getCategoryDetailsById(categoryIdArg) returntype="ecommerce.model.brand" access="public" {
+	function getCategoryDetailsById(categoryIdArg) returntype="ecommerce.model.brand" access="public" {
 		
 		qparams = {brandid={value=categoryIdArg , cfsqltype ='cf_sql_integer'}};
 		queryObj = queryexecute("select * from category_table where brand_id=:brandid",qparams);
@@ -22,7 +21,20 @@ component  hint="This is persistance implementation to persist/retrieve category
 		category.category_description = queryObj["CATEGORY_DESCRIPTION"][1];
 		category.category_name = queryObj["CATEGORY_NAME"][1];
 		category.category_id = categoryIdArg;
-		writeDump(category);
 			return category;
+	}
+		
+	function getCategories() returntype="ecommerce.model.category[]" access="public" {
+		queryResultObj = queryexecute("select * from category_table");
+		var categoryList = arraynew(1);
+		cfloop(query="queryResultObj")
+		{
+			category = createObject("component", "ecommerce.model.category" );
+			category.category_description = queryResultObj.category_description;
+			category.category_name = queryResultObj.category_name;
+			category.category_id  = queryResultObj.category_id;		
+			arrayAppend(categoryList,category);
 		}
+		return categoryList;
+	}     
 }

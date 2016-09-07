@@ -44,4 +44,13 @@
 			<cfreturn response>
 	</cffunction>
 	
+	<cffunction name="getMerchantProducts" access="remote" httpmethod="GET" restpath="product/{merchantId}" returntype="array" produces="application/json">
+		<cfargument name="merchantId" restargname="merchantId" restargsource="Path" type="numeric" >
+		<cfscript>
+			merchantPersistance = createObject("component", "ecommerce.persistance.merchantpersistance" );	
+			response = merchantPersistance.getMerchantProduct(merchantId);
+		</cfscript>
+			<cfreturn response>
+	</cffunction>
+	
 </cfcomponent>

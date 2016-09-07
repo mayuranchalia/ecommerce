@@ -20,9 +20,26 @@ component  hint="This is persistance implementation to persist/retrieve merchant
 		return true;
 	}
 	
-	function deleteProduct(merchantIdArg,productIdArg) access="remote" returntype="boolean"  {
+	function deleteProduct(merchantIdArg,productIdArg) access="public"   returntype="boolean"  {
 		qparams = {merchantId={value=merchantIdArg , cfsqltype ='cf_sql_integer'},productId={value=productIdArg , cfsqltype ='cf_sql_integer'}};
 		queryexecute("delete from merchant_product_table  where merchant_id=:merchantId AND product_id=:productId",qparams);
 		return true;	
-	}	
+	}
+	
+	function getMerchantProduct(merchantIdArg) access="public" returntype="Array"   {
+		qparams = {merchantId={value=merchantIdArg , cfsqltype ='cf_sql_integer'}};
+		queryObj = queryexecute("select * from merchant_product_table where merchant_id=:merchantId",qparams);
+		
+		var merchantProductList = arraynew(1);
+		cfloop(query="queryObj")
+		{	
+			merchantProdcut = structnew();
+			merchantProdcut.merchant_id = queryObj.merchant_id;
+			merchantProdcut.product_id = queryObj.product_id;
+			merchantProdcut.prodcut_quantity = queryObj.product_quantity;
+			merchantProdcut.product_price = queryObj.product_price;
+			arrayAppend(merchantProductList,merchantProdcut);
+		}
+		return merchantProductList;
+	}    	
 }
