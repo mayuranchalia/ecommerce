@@ -29,7 +29,7 @@ CREATE TABLE `brand_table` (
   PRIMARY KEY (`brand_id`),
   UNIQUE KEY `brand_name_UNIQUE` (`brand_name`),
   UNIQUE KEY `brand_id_UNIQUE` (`brand_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `brand_table` (
 
 LOCK TABLES `brand_table` WRITE;
 /*!40000 ALTER TABLE `brand_table` DISABLE KEYS */;
-INSERT INTO `brand_table` VALUES (1,'Motorla brand is owned by Lenovo','Motorola'),(2,'HP laptops give you the right speed, graphics, and storage choices to match your lifestyle plus exclusive HP innovations to make the road enjoyable for you. This brand has some of the best-looking laptops in their portfolio','HP'),(3,'Lenovo Laptops are known for the perfect blend of uber cool design along with the right infusion of outstanding features to give you the best of performance. Be it the latest computer games to enjoy or intricate programming that needs to done','Lenovo'),(4,'MacBooks are renowned for their stability, easy-to-use interface and incredible looks. Whether it\'s for use at home, office, on the move or enjoying a film, they can do it all in style. They are perfect for almost everyone','Apple'),(5,'Yet again, Microsoft offers a range of robust devices that are not only feature-rich but also affordable and stylish. If you are looking for the perfect balance of size, power, elegance and affordability for working on the go, then the Surface range of tablets are for you','Microsoft'),(6,'If you are looking for a Mobiles at a reasonable price, then the honor Bee fits the bill well.The honor Brand Store has listings of different honor Mobiless in different colours. ','Huawei'),(7,'GE offers a wide range of large appliances such as refrigerators, washing machines, air conditioners, dishwashers, microwaves and water purifiers','GE');
+INSERT INTO `brand_table` VALUES (1,'Motorla brand is owned by Lenovo','Motorola'),(2,'HP laptops give you the right speed, graphics, and storage choices to match your lifestyle plus exclusive HP innovations to make the road enjoyable for you. This brand has some of the best-looking laptops in their portfolio','HP'),(3,'Lenovo Laptops are known for the perfect blend of uber cool design along with the right infusion of outstanding features to give you the best of performance. Be it the latest computer games to enjoy or intricate programming that needs to done','Lenovo'),(4,'MacBooks are renowned for their stability, easy-to-use interface and incredible looks. Whether it\'s for use at home, office, on the move or enjoying a film, they can do it all in style. They are perfect for almost everyone','Apple'),(5,'Yet again, Microsoft offers a range of robust devices that are not only feature-rich but also affordable and stylish. If you are looking for the perfect balance of size, power, elegance and affordability for working on the go, then the Surface range of tablets are for you','Microsoft'),(6,'If you are looking for a Mobiles at a reasonable price, then the honor Bee fits the bill well.The honor Brand Store has listings of different honor Mobiless in different colours. ','Huawei'),(7,'GE offers a wide range of large appliances such as refrigerators, washing machines, air conditioners, dishwashers, microwaves and water purifiers','GE'),(9,'A trusted choice of professionals, Canon produces cameras of the best quality. If you want a camera that gives you the best shots in all kinds of conditions, Canon is one of the good choices to consider.','Canon'),(10,'Nikon cameras are some of the best selling cameras in the world. The pictures captured by these cameras are of professional grade. With high quality flashes and lenses, a Nikon camera is worth purchasing.','Nikon');
 /*!40000 ALTER TABLE `brand_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +251,7 @@ CREATE TABLE `product_table` (
   `product_category_id` int(11) DEFAULT NULL,
   `product_image_links` mediumtext COMMENT 'This should contain comma seprated image links',
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +260,7 @@ CREATE TABLE `product_table` (
 
 LOCK TABLES `product_table` WRITE;
 /*!40000 ALTER TABLE `product_table` DISABLE KEYS */;
-INSERT INTO `product_table` VALUES (1,'Iphone6c','Latest phone by Apple',4,1,'www.cdn.com/iphone6s,www.cdn.com/small/iphone6s'),(2,'Nexus6p','Latest phone by Google and Huawei',6,1,'www.cdn.com/nexus6p,www.cdn.com/small/nexus6p');
+INSERT INTO `product_table` VALUES (1,'Iphone6c','Latest phone by Apple',4,1,'www.cdn.com/iphone6s,www.cdn.com/small/iphone6s'),(2,'Nexus6p','Latest phone by Google and Huawei',6,1,'www.cdn.com/nexus6p,www.cdn.com/small/nexus6p'),(3,'HP 14-AM081TU','2.3GHz Intel Core i5-6200U processor,4GB DDR4 memory is upgradable to 16GB,14-inch screen',2,3,'www.cdn.com/HP14-AM081TU,www.cdn.com/small/HP14-AM081TU'),(4,'HP 15-ac122tu','2GHz Intel Core i3 5005U 5th Gen Pocessor,4GB DDR3 RAM,15.6-inch screen',2,3,'www.cdn.com/HP15-ac122tu,www.cdn.com/small/HP15-ac122tu'),(5,'HP 14-AC171TU','2GHz Intel Core i3-5005U 5th Gen Processor,4GB DDR3L RAM,14-inch screen',2,3,'www.cdn.com/HP14-AC171TU,www.cdn.com/small/HP14-AC171TU'),(6,'Canon EOS 1300D','18MP APS-C CMOS sensor and DIGIC 4+,9-point AF with 1 center cross-type AF point,Standard ISO: 100 to 6400, expandable to 12800',9,2,'www.cdn.com/CanonEOS1300D,www.cdn.com/small/CanonEOS1300D'),(7,'Canon EOS 1200D','18 megapixel CMOS (APS-C) image sensor,High-performance DIGIC 4 image processor,ISO 100-6400 (expandable to H: 12800) to shoot from bright to dim light',9,2,'www.cdn.com/CanonEOS1200D,www.cdn.com/small/CanonEOS1200D'),(8,'Nikon D3300','24.2 megapixel effective sensor without an optical low-pass filter,Full-colour RGB metering sensor,Nikon\'s scene recognition system',10,2,'www.cdn.com/NikonD3300,www.cdn.com/small/NikonD3300 '),(9,'Nikon D5200','Equipped with a 24.1 megapixel DX-format sensor,Powered with EXPEED 3 engine,Sensitivity range from ISO 100 to ISO 6400 and the best in class 39 point AF system',10,2,'www.cdn.com/NikonD5200,www.cdn.com/small/NikonD5200');
 /*!40000 ALTER TABLE `product_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-07 15:42:06
+-- Dump completed on 2016-09-08 18:34:45
