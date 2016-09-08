@@ -113,6 +113,9 @@ component hint="This is persistance implementation to persist/retrieve product i
 	    	
 		    qparams = {productid={value=productIDArg , cfsqltype ='cf_sql_integer'}};
 			queryResultObj = queryexecute("select * from product_table where product_id=:productid",qparams);
+			if(queryResultObj.recordcount < 1 ){
+				throw("Product not found","404", "product with id "&productIDArg&" not found.", "404");
+			}
 			return queryResultObj.RecordCount > 0;
 	}  
 }
