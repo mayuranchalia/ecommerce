@@ -1,6 +1,6 @@
 <cfcomponent restpath="merchant" rest="true">
 	
-	<cffunction name="addProduct" access="remote" httpmethod="POST" consumes="application/x-www-form-urlencoded" restpath="product/{merchantId}" returntype="boolean"  description="Add a new product">
+	<cffunction name="addProduct" access="remote" httpmethod="POST" consumes="application/x-www-form-urlencoded" produces="application/json" restpath="product/{merchantId}" returntype="boolean"  description="Add a new product">
 		<cfargument name="merchantId" restargname="merchantId" restargsource="Path" type="numeric" >
 		<cfargument name="productId" restargname="productId" restargsource="Form" type="numeric" >
 		<cfargument name="productPrice" restargname="productPrice" restargsource="Form" type="numeric" >

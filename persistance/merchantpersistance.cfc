@@ -1,8 +1,13 @@
 component  hint="This is persistance implementation to persist/retrieve merchant product information from database" {
 	
 	function addProduct(merchantId,productId,productPrice,productQuantity) returntype="boolean" access="public"     {
-		queryexecute("insert into merchant_product_table (merchant_id,product_id,product_price,product_quantity) values(?,?,?,?)",
-		[merchantId,productId,productPrice,productQuantity],{result="result"});
+		try{
+			queryexecute("insert into merchant_product_table (merchant_id,product_id,product_price,product_quantity) values(?,?,?,?)",
+			[merchantId,productId,productPrice,productQuantity],{result="result"});
+		}catch (any exception){
+			throw("Product already exist","409", "product with id "&productId&" already exist.", "409");
+		}
+		
 		return true;
 	}
 	

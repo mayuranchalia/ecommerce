@@ -8,7 +8,7 @@
 		<cfreturn gateways>
 	</cffunction>
 	
-	<cffunction name="enableGateway" access="remote" httpmethod="GET" returntype="boolean" restpath="enable/{gatewayId}" description="Enable a Payment Gateway" >
+	<cffunction name="enableGateway" access="remote" httpmethod="PUT" returntype="boolean" restpath="enable/{gatewayId}" description="Enable a Payment Gateway" >
 		<cfargument name="gatewayId" restargname="gatewayId" restargsource="Path" type="numeric" >
 		<cfscript>
 			getwayPersistance = createObject("component", "ecommerce.persistance.gatewaypersistance" );	
@@ -17,7 +17,7 @@
 		<cfreturn status>
 	</cffunction>
 	
-	<cffunction name="disableGateway" access="remote" httpmethod="GET" returntype="boolean" restpath="disable/{gatewayId}" description="Disable a Payment Gateway">
+	<cffunction name="disableGateway" access="remote" httpmethod="PUT" returntype="boolean" restpath="disable/{gatewayId}" description="Disable a Payment Gateway">
 		<cfargument name="gatewayId" restargname="gatewayId" restargsource="Path" type="numeric" >
 		<cfscript>
 			getwayPersistance = createObject("component", "ecommerce.persistance.gatewaypersistance" );	

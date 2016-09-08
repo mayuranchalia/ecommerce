@@ -22,7 +22,7 @@
 		<cfreturn products>
 	</cffunction>
 	
-	<cffunction name="getProductId"  access="remote" httpmethod="GET" produces="application/json" restpath="search" returntype="ecommerce.model.product[]" description="Search list of products by brand id" >
+	<cffunction name="searchProducts"  access="remote" httpmethod="GET" produces="application/json" restpath="search" returntype="ecommerce.model.product[]" description="Search list of products by brand id" >
 		<cfargument name="searchId"  restargsource="query " restargname="searchId" type="numeric" >
 		<cfscript>
 			productPersistance = createObject("component", "ecommerce.persistance.productpersistance" );

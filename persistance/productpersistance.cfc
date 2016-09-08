@@ -55,6 +55,9 @@ component hint="This is persistance implementation to persist/retrieve product i
 			product.product_id = queryResultObj.product_id;
 			arrayAppend(productList,product);
 		}
+		if(queryResultObj.recordcount < 1 ){
+			throw("Product not found","404", "product with brand id "&brandIdArg&" not found.", "404");
+		}
 		return productList;
 	}     
 	
@@ -75,6 +78,9 @@ component hint="This is persistance implementation to persist/retrieve product i
 			product.product_image_links = linkArray;
 			product.product_id = queryResultObj.product_id;
 			arrayAppend(productList,product);
+		}
+		if(queryResultObj.recordcount < 1 ){
+			throw("Product not found","404", "product with category id "&brandIdArg&" not found.", "404");
 		}
 		return productList;
 	} 
