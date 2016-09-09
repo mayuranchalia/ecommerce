@@ -2,8 +2,8 @@
 	<cffunction name="getOrders" access="remote" produces="application/json" returntype="ecommerce.model.order[]" httpmethod="GET" restpath="{customerId}" description="API to retrieve the list order for a customer">
 		<cfargument name="customerId" restargname="customerId" restargsource="Path" type="string" >
 			<cfscript>
-				orderPersistance = createObject("component", "ecommerce.persistance.orderpersistance");
-				ordres = orderPersistance.getOrders(customerId);
+				orderPersistence = createObject("component", "ecommerce.persistence.orderpersistence");
+				ordres = orderPersistence.getOrders(customerId);
 			</cfscript>
 			<cfreturn ordres>
 	</cffunction>
@@ -12,8 +12,8 @@
 		<cfargument name="customerId" restargname="customerId" restargsource="Path" type="string" >
 		<cfargument name="orderId" restargname="orderId" restargsource="Path" type="numeric" >
 		<cfscript>
-			orderPersistance = createObject("component", "ecommerce.persistance.orderpersistance");
-			orderresponse = orderPersistance.deleteOrder(orderId,customerId);
+			orderPersistence = createObject("component", "ecommerce.persistence.orderpersistence");
+			orderresponse = orderPersistence.deleteOrder(orderId,customerId);
 		</cfscript>
 		<cfreturn orderresponse>
 	</cffunction>
@@ -24,8 +24,8 @@
 		<cfargument name="orderProducts" restargname="orderProducts" restargsource="Form" type="string" >
 		<cfargument name="paymentGatewayId" restargname="paymentGatewayId" restargsource="Form" type="numeric" >
 		<cfscript>
-			orderPersistance = createObject("component", "ecommerce.persistance.orderpersistance");
-			order = orderPersistance.createOrder(customerId,orderStatus,orderProducts,paymentGatewayId);
+			orderPersistence = createObject("component", "ecommerce.persistence.orderpersistence");
+			order = orderPersistence.createOrder(customerId,orderStatus,orderProducts,paymentGatewayId);
 		</cfscript>
 		<cfreturn order>
 	</cffunction>
@@ -36,8 +36,8 @@
 		<cfargument name="orderStatus" restargsource="Form" restargname="orderStatus" type="string" >
 		<cfargument name="orderProducts" restargsource="Form" restargname="orderProducts" type="string" >
 		<cfscript>
-			orderPersistance = createObject("component", "ecommerce.persistance.orderpersistance");
-			orderResponse = orderPersistance.updateOrder(1,orderId,paymentGatewayId,orderStatus,orderProducts);
+			orderPersistence = createObject("component", "ecommerce.persistence.orderpersistence");
+			orderResponse = orderPersistence.updateOrder(1,orderId,paymentGatewayId,orderStatus,orderProducts);
 		</cfscript>
 		<cfreturn orderResponse>
 	</cffunction>

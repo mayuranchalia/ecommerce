@@ -6,8 +6,8 @@
 		<cfargument name="promotionStatus" type="string" >
 		<cfargument name="promotionRule" type="string" >
 		<cfscript>
-			promotionPersitance = createObject("component","promotionpersistance");
-			promotion = promotionPersitance.addPromotion(promotionType,promotionDescription,promotionStatus,promotionRule);
+			promotionPersitence = createObject("component","promotionpersistence");
+			promotion = promotionPersitence.addPromotion(promotionType,promotionDescription,promotionStatus,promotionRule);
 			promotionStruct = structnew();
 			promotionStruct.promotion_id = promotion.promotion_id;
 			promotionStruct.promotion_type = promotion.promotion_type;
@@ -20,8 +20,8 @@
 	
 	<cffunction name="getPromotion"  access="remote" returntype="string" >
 		<cfscript>
-			promotionPersitance = createObject("component","promotionpersistance");
-			promotions =  promotionPersitance.getPromotions();
+			promotionPersitence = createObject("component","promotionpersistence");
+			promotions =  promotionPersitence.getPromotions();
 			promotionsJson = serializeJSON(promotions);
 		</cfscript>
 		<cfreturn promotionsJson >
@@ -30,8 +30,8 @@
 	<cffunction name="generateDiscountCode" access="remote" returntype="string" >
 		<cfargument name="promotionIDArg"  type="numeric" >
 		<cfscript>
-			promotionPersitance = createObject("component","promotionpersistance");
-			discountCode = promotionPersitance.generateDiscountCode(promotionIDArg);
+			promotionPersitence = createObject("component","promotionpersistence");
+			discountCode = promotionPersitence.generateDiscountCode(promotionIDArg);
 		</cfscript>
 		<cfreturn discountCode >
 	</cffunction>
@@ -39,8 +39,8 @@
 	<cffunction name="getDiscountCode" access="remote" returntype="string" >
 		<cfargument name="promotionIDArg"  type="numeric" >
 		<cfscript>
-			promotionPersitance = createObject("component","promotionpersistance");
-			discountCode = promotionPersitance.getDiscountCode(promotionIDArg);
+			promotionPersitence = createObject("component","promotionpersistence");
+			discountCode = promotionPersitence.getDiscountCode(promotionIDArg);
 		</cfscript>
 		<cfreturn discountCode>
 	</cffunction>

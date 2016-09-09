@@ -8,16 +8,16 @@
 		<cfargument name="productCategoryId" type="numeric" restargsource="Form" restargname="productCategoryId">
 		<cfargument name="productImageLinks" type="string" restargsource="Form" restargname="productImageLinks">
 		<cfscript>
-			productPersistance = createObject("component", "ecommerce.persistance.productpersistance" );
-			product = productPersistance.saveProduct(productName,productDescription,productBrandId,productCategoryId,productImageLinks);
+			productPersistence = createObject("component", "ecommerce.persistence.productpersistence" );
+			product = productPersistence.saveProduct(productName,productDescription,productBrandId,productCategoryId,productImageLinks);
 		</cfscript>
 		<cfreturn product>
 	</cffunction>
 	
 	<cffunction name="getProducts" access="remote" httpmethod="GET" produces="application/json" returntype="ecommerce.model.product[]" description="Get list of products" >
 		<cfscript>
-			productPersistance = createObject("component", "ecommerce.persistance.productpersistance" );
-			products = productPersistance.getProducts();
+			productPersistence = createObject("component", "ecommerce.persistence.productpersistence" );
+			products = productPersistence.getProducts();
 		</cfscript>
 		<cfreturn products>
 	</cffunction>
@@ -34,8 +34,8 @@
 	<cffunction name="searchProducts"  access="remote" httpmethod="GET" produces="application/json" restpath="search" returntype="ecommerce.model.product[]" description="Search list of products by brand id" >
 		<cfargument name="searchId"  restargsource="query " restargname="searchId" type="numeric" >
 		<cfscript>
-			productPersistance = createObject("component", "ecommerce.persistance.productpersistance" );
-			products = productPersistance.getProductsByBrand(searchId);
+			productPersistence = createObject("component", "ecommerce.persistence.productpersistence" );
+			products = productPersistence.getProductsByBrand(searchId);
 		</cfscript>
 		<cfreturn products>
 	</cffunction>
@@ -44,24 +44,24 @@
 		<cfargument name="brandName" restargsource="Form" restargname="brandName" type="string" >
 		<cfargument name="brandDescription" restargsource="Form" restargname="brandDescription" type="string" >
 		<cfscript>
-			brandPersistance = createObject("component", "ecommerce.persistance.brandpersistance" );
-			brand = brandPersistance.saveBrand(brandName,brandDescription);
+			brandPersistence = createObject("component", "ecommerce.persistence.brandpersistence" );
+			brand = brandPersistence.saveBrand(brandName,brandDescription);
 		</cfscript>
 		<cfreturn brand>
 	</cffunction>
 
 	<cffunction name="getBrands" access="remote" httpmethod="GET" restpath="brand" returntype="ecommerce.model.brand[]" produces="application/json"  description="Get all the brands">
 		<cfscript>
-			brandPersistance = createObject("component", "ecommerce.persistance.brandpersistance" );
-			brands = brandPersistance.getBrands();
+			brandPersistence = createObject("component", "ecommerce.persistence.brandpersistence" );
+			brands = brandPersistence.getBrands();
 		</cfscript>
 		<cfreturn brands>
 	</cffunction>	
 	
 	<cffunction name="getCategories" access="remote" httpmethod="GET" restpath="category" returntype="ecommerce.model.category[]" produces="application/json" description="Get list of product categories" >
 		<cfscript>
-			categoryPersistance = createObject("component", "ecommerce.persistance.categorypersistance" );
-			categories = categoryPersistance.getCategories();
+			categorypersistence = createObject("component", "ecommerce.persistence.categorypersistence" );
+			categories = categorypersistence.getCategories();
 		</cfscript>
 		<cfreturn categories>
 	</cffunction>
@@ -70,8 +70,8 @@
 		<cfargument name="categoryName" restargname="categoryName"  type="string" restargsource="Form" >
 		<cfargument name="categoryDescription" restargname="categoryDescription"  type="string" restargsource="Form" >
 		<cfscript>
-			categoryPersistance = createObject("component", "ecommerce.persistance.categorypersistance" );
-			category = categoryPersistance.saveCategory(categoryName,categoryDescription);
+			categorypersistence = createObject("component", "ecommerce.persistence.categorypersistence" );
+			category = categorypersistence.saveCategory(categoryName,categoryDescription);
 		</cfscript>
 		<cfreturn category>
 	</cffunction>

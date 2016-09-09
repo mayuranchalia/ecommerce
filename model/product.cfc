@@ -16,8 +16,8 @@ component  displayname="Product" hint="This is a product model"
 		This is a example of subresource locator
 	**/
 	function getProduct() httpmethod="GET"  returntype ="ecommerce.model.product" access="remote" produces="application/json" {
-		productPersistance = createObject("component", "ecommerce.persistance.productpersistance");
-		product = productPersistance.getProductsById(this.product_id);
+		productPersistence = createObject("component", "ecommerce.persistence.productpersistence");
+		product = productPersistence.getProductsById(this.product_id);
 		return product;
 	}	 
 	

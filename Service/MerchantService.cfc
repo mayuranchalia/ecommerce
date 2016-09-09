@@ -6,8 +6,8 @@
 		<cfargument name="productPrice" restargname="productPrice" restargsource="Form" type="numeric" >
 		<cfargument name="productQuantity" restargname="productQuantity" restargsource="Form" type="numeric" >
 		<cfscript>
-			merchantPersistance = createObject("component", "ecommerce.persistance.merchantpersistance" );	
-			response = merchantPersistance.addProduct(merchantId,productId,productPrice,productQuantity);
+			merchantPersistence = createObject("component", "ecommerce.persistence.merchantpersistence" );	
+			response = merchantPersistence.addProduct(merchantId,productId,productPrice,productQuantity);
 		</cfscript>
 			<cfreturn response>
 	</cffunction>
@@ -17,8 +17,8 @@
 		<cfargument name="productId" restargname="productId" restargsource="Form" type="numeric" >
 		<cfargument name="productPrice" restargname="productPrice" restargsource="Form" type="numeric" >
 		<cfscript>
-			merchantPersistance = createObject("component", "ecommerce.persistance.merchantpersistance" );	
-			response = merchantPersistance.updateProductPrice(merchantId,productId,productPrice);
+			merchantPersistence = createObject("component", "ecommerce.persistence.merchantpersistence" );	
+			response = merchantPersistence.updateProductPrice(merchantId,productId,productPrice);
 		</cfscript>
 			<cfreturn response>
 	</cffunction>
@@ -28,8 +28,8 @@
 		<cfargument name="productId" restargname="productId" restargsource="Form" type="numeric" >
 		<cfargument name="productQuantity" restargname="productQuantity" restargsource="Form" type="numeric" >
 		<cfscript>
-			merchantPersistance = createObject("component", "ecommerce.persistance.merchantpersistance" );	
-			response = merchantPersistance.updateProductQuantity(merchantId,productId,productQuantity);
+			merchantPersistence = createObject("component", "ecommerce.persistence.merchantpersistence" );	
+			response = merchantPersistence.updateProductQuantity(merchantId,productId,productQuantity);
 		</cfscript>
 			<cfreturn response>
 	</cffunction>
@@ -38,8 +38,8 @@
 		<cfargument name="merchantId" restargname="merchantId" restargsource="Path" type="numeric" >
 		<cfargument name="productId" restargname="productId" restargsource="Query " type="numeric" >
 		<cfscript>
-			merchantPersistance = createObject("component", "ecommerce.persistance.merchantpersistance" );	
-			response = merchantPersistance.deleteProduct(merchantId,productId);
+			merchantPersistence = createObject("component", "ecommerce.persistence.merchantpersistence" );	
+			response = merchantPersistence.deleteProduct(merchantId,productId);
 		</cfscript>
 			<cfreturn response>
 	</cffunction>
@@ -47,8 +47,8 @@
 	<cffunction name="getMerchantProducts" access="remote" httpmethod="GET" restpath="product/{merchantId}" returntype="array" produces="application/json" description="Get products for the Merchant">
 		<cfargument name="merchantId" restargname="merchantId" restargsource="Path" type="numeric" >
 		<cfscript>
-			merchantPersistance = createObject("component", "ecommerce.persistance.merchantpersistance" );	
-			response = merchantPersistance.getMerchantProduct(merchantId);
+			merchantPersistence = createObject("component", "ecommerce.persistence.merchantpersistence" );	
+			response = merchantPersistence.getMerchantProduct(merchantId);
 		</cfscript>
 			<cfreturn response>
 	</cffunction>
