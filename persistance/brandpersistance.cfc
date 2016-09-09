@@ -33,7 +33,6 @@ component  hint="This is persistance implementation to persist/retrieve brand in
 		brand.brand_description = queryObj["BRAND_DESCRIPTION"][1];
 		brand.brand_name = queryObj["BRAND_NAME"][1];
 		brand.brand_id = brandIdArg;
-		writeDump(brand);
 			return brand;
 		}
 		

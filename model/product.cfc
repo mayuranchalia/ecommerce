@@ -12,4 +12,13 @@ component  displayname="Product" hint="This is a product model"
 
 	property name="product_image_links" type="array" displayname="Product Images" hint="Link to product images";
 	
+	/**
+		This is a example of subresource locator
+	**/
+	function getProduct() httpmethod="GET"  returntype ="ecommerce.model.product" access="remote" produces="application/json" {
+		productPersistance = createObject("component", "ecommerce.persistance.productpersistance");
+		product = productPersistance.getProductsById(this.product_id);
+		return product;
+	}	 
+	
 }

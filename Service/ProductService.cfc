@@ -22,6 +22,15 @@
 		<cfreturn products>
 	</cffunction>
 	
+	<cffunction name="getProductById"  access="remote" restpath="{productId}" returntype="ecommerce.model.product" description="Retrieve product details by product id" >
+		<cfargument name="productId"  restargsource="path " restargname="productId" type="numeric" >
+		<cfscript>
+			productModel = createObject("component", "ecommerce.model.product" );
+			productModel.product_id = productId;
+		</cfscript>
+		<cfreturn productModel>
+	</cffunction>
+	
 	<cffunction name="searchProducts"  access="remote" httpmethod="GET" produces="application/json" restpath="search" returntype="ecommerce.model.product[]" description="Search list of products by brand id" >
 		<cfargument name="searchId"  restargsource="query " restargname="searchId" type="numeric" >
 		<cfscript>

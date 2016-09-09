@@ -61,6 +61,25 @@ component hint="This is persistance implementation to persist/retrieve product i
 		return productList;
 	}     
 	
+	function getProductsById(productIdArg) returntype="ecommerce.model.product" access="public" {
+		
+		qparams = {productid={value=productIdArg , cfsqltype ='cf_sql_integer'}};
+		queryResultObj = queryexecute("select * from product_table where product_id=:productid",qparams);
+			product = createObject("component", "ecommerce.model.product" );
+			product.product_name = queryResultObj.product_name;
+			product.product_description = queryResultObj.product_description;
+			product.product_brand_id = queryResultObj.product_brand_id;
+			product.product_category_id = queryResultObj.product_category_id;
+			image_links = queryResultObj.product_image_links;
+			linkArray = image_links.split(",");
+			product.product_image_links = linkArray;
+			product.product_id = queryResultObj.product_id;
+		if(queryResultObj.recordcount < 1 ){
+			throw("Product not found","404", "product with product id "&productIdArg&" not found.", "404");
+		}
+		return product;
+	}  
+	
 	function getProductsByCategory(categoryIdArg) returntype="ecommerce.model.product[]" access="public" {
 		
 		qparams = {categoryid={value=categoryIdArg , cfsqltype ='cf_sql_integer'}};
