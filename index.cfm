@@ -94,7 +94,9 @@
 /*	productString = serializeJSON(products);
 	order = orderPersistence.updateOrder(1,1,1,"cart",productString);
 	writeOutput(serializeJSON(order));*/
+	writeOutput(createuUID());
 </cfscript>
+
 <!---<cfoutput >
 	#createuUID()#
 </cfoutput>--->

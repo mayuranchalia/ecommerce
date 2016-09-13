@@ -5,7 +5,6 @@ component hint="This is persistence implementation to persist/retrieve product i
 		
 		queryexecute("insert into product_table (product_name,product_description,product_brand_id,product_category_id,product_image_links) values(?,?,?,?,?)",
 			[prdName,prdDescription,prdBrandId,prdCategoryId,prdImageLinks],{result="result"});
-		
 		linkArray = prdImageLinks.split(",");
 		product = createObject("component", "ecommerce.model.product" );
 		product.product_name = prdName;
